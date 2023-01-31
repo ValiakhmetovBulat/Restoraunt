@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Restoraunt.Data.Entities.MenuPosition>
+
+@{
+    ViewData["Title"] = "Oasis";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>О ресторане - @ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="info-container">
+        <h2 class="page-title">Меню</h2>
+        <div class="black-splitter"></div>
+        
+        <div class="menu">
+            <ul class="menu-section-container">
+                <li><a asp-controller="Menu" asp-action="Index" class="menu-section">ОСНОВНОЕ</a></li>
+                <li><a asp-controller="Menu" asp-action="ForCompany" class="menu-section">ДЛЯ КОМПАНИИ</a></li>
+                <li><a asp-controller="Menu" asp-action="Buisness" class="menu-section">БИЗНЕС-ЛАНЧИ</a></li>
+                <li><a asp-controller="Menu" asp-action="Bar" class="menu-section">БАР</a></li>
+            </ul>
+            <div class="menu-field">
+                @foreach (var item in Model) {
+                    <p>@item.Name</p>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
