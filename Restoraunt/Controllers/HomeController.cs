@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Restoraunt.Data.Entities;
 using Restoraunt.Models;
 using System.Diagnostics;
 
@@ -9,11 +8,9 @@ namespace Restoraunt.Controllers
 
     public class HomeController : Controller
     {
-        private readonly RestorauntDbContext _context;
 
-        public HomeController(RestorauntDbContext context)
+        public HomeController()
         {
-            _context = context;
         }
 
         public IActionResult Index()
