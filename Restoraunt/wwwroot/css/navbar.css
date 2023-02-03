@@ -58,3 +58,7 @@ a:hover {
     border-radius: 15px;
     padding: 0.5em 0.7em 0.5em 0.7em;
 }
+
+.feedback-text {
+    width: 100px;
+}

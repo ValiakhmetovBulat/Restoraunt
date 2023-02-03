@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RestorauntApi.Models;
@@ -11,9 +12,11 @@ using RestorauntApi.Models;
 namespace Restoraunt.Migrations
 {
     [DbContext(typeof(RestorauntDbContext))]
-    partial class RestorauntDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230202144624_SettedReviewsTableAdminAllowsNull")]
+    partial class SettedReviewsTableAdminAllowsNull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,7 +110,7 @@ namespace Restoraunt.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AdminId")
+                    b.Property<int>("AdminId")
                         .HasColumnType("integer");
 
                     b.Property<DateOnly>("DateOfVisit")
@@ -189,7 +192,9 @@ namespace Restoraunt.Migrations
                 {
                     b.HasOne("RestorauntApi.Models.Entities.Admin", "Admin")
                         .WithMany()
-                        .HasForeignKey("AdminId");
+                        .HasForeignKey("AdminId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Admin");
                 });

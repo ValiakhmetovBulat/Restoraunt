@@ -1,4 +1,4 @@
-﻿
+﻿@model MenuModel
 @{
     ViewData["Title"] = "Oasis";
 }
@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>О ресторане - @ViewData["Title"]</title>
+    <title>Меню - @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -18,15 +18,23 @@
         
         <div class="menu">
             <ul class="menu-section-container">
-                <li><a asp-controller="Menu" asp-action="Index" class="menu-section">ОСНОВНОЕ</a></li>
-                <li><a asp-controller="Menu" asp-action="ForCompany" class="menu-section">ДЛЯ КОМПАНИИ</a></li>
-                <li><a asp-controller="Menu" asp-action="Buisness" class="menu-section">БИЗНЕС-ЛАНЧИ</a></li>
-                <li><a asp-controller="Menu" asp-action="Bar" class="menu-section">БАР</a></li>
+                @foreach (var item in Model.typesToSections) {
+                        <li><a asp-controller="Menu" asp-action="Index" asp-route-section="@item.Value" asp-route-type="@item.Value" class="menu-section">@item.Key</a></li>
+                }
             </ul>
             <div class="menu-field">
-                @foreach (var item in Model) {
-                    <p>@item.Name</p>
-                }
+
+                
+                @foreach (var item in Model.menuPositions) {
+                    <div class="card-container">
+                        <div class="card">
+                            <img src=data:image/jpg;base64,@item.Photo class="img-pos">
+                            <h1>@item.Name</h1>
+                            <span class="position-description">@item.Decription</span>
+                            <div class="position-price">@item.Price руб.</div>
+                        </div>
+                    </div>
+                }                
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RestorauntApi.Models;
@@ -11,9 +12,11 @@ using RestorauntApi.Models;
 namespace Restoraunt.Migrations
 {
     [DbContext(typeof(RestorauntDbContext))]
-    partial class RestorauntDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230203122419_Changed Date Of Visit (Review Table) data type from DateOnly to DateTime")]
+    partial class ChangedDateOfVisitReviewTabledatatypefromDateOnlytoDateTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,8 +113,8 @@ namespace Restoraunt.Migrations
                     b.Property<int?>("AdminId")
                         .HasColumnType("integer");
 
-                    b.Property<DateOnly>("DateOfVisit")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("DateOfVisit")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()

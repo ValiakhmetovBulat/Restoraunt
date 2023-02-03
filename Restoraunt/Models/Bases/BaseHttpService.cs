@@ -2,32 +2,49 @@
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Text;
+using RestorauntApi.Models.Entities;
 
 namespace Restoraunt.Models.Bases
 {
-    public abstract class BaseHttpService
+    public class BaseHttpService<T> where T : class
     {
-        private readonly HttpClient _httpClient;
+        private static HttpClient _httpClient = new HttpClient();
+        private static readonly string _basePath = "https://localhost:7226/api";
 
-        protected BaseHttpService(HttpClient httpClient)
+        public static async Task<List<T>> SendAsync<T>(string action, HttpMethod method, object model = null)
+        where T : class, new()
         {
-            _httpClient = httpClient;
-            _httpClient.Timeout = TimeSpan.FromMinutes(2);
-        }
+            try
+            {
+                var uri = $"{_basePath}/{action}";
+                var message = CreateMessage(uri, method, model);
+                var response = await _httpClient.SendAsync(message);
+                var content = await response.Content.ReadAsStringAsync();
 
-        protected abstract string BasePath { get; }
+                List<T> result = new List<T>();
+                T res;
+                try
+                {
+                    result = JsonConvert.DeserializeObject<List<T>>(content);
+                    if (result == null)
+                        return new List<T>();
 
-        private static HttpContent CreateContent(object model)
-        {
-            if (model is HttpContent cont)
-                return cont;
+                    return result;
+                }
+                catch (Exception)
+                {
+                    res = JsonConvert.DeserializeObject<T>(content);
+                    if (res == null)
+                        return new List<T>();
 
-            var content = new ByteArrayContent(model == null
-                ? Array.Empty<byte>()
-                : Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(model)));
-            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            content.Headers.ContentEncoding.Add("UTF-8");
-            return content;
+                    result.Add(res);
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T>();
+            }
         }
 
         private static HttpRequestMessage CreateMessage(string uri, HttpMethod method, object model)
@@ -40,33 +57,22 @@ namespace Restoraunt.Models.Bases
             return message;
         }
 
-        protected async Task<BaseResponce<T>> SendAsync<T>(string action, HttpMethod method, object model = null) where T : class, new()
+        private static HttpContent CreateContent(object model)
         {
-            try
-            {
-                var uri = $"{BasePath}/{action}";
-                var message = CreateMessage(uri, method, model);
-                var responce = await _httpClient.SendAsync(message);
-                if (responce.StatusCode == HttpStatusCode.NoContent)
-                    return new BaseResponce<T>();
+            if (model is HttpContent cont)
+                return cont;
 
-                var content = await responce.Content.ReadAsStringAsync();
-                var res = JsonConvert.DeserializeObject<BaseResponce<T>>(content);
-
-                if (res == null)
-                    return new BaseResponce<T>(new T()) { Error = $"Can't convert responce from URI = '{uri}', content returned = '{content}' to type = {typeof(T)} " };
-
-                return res;
-            }
-            catch (Exception ex)
-            {
-                return new BaseResponce<T>() { Error = _baseError(ex) };
-            }
+            var content = new ByteArrayContent(model == null
+                ? Array.Empty<byte>()
+                : Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(model)));
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            content.Headers.ContentEncoding.Add("UTF-8");
+            return content;
         }
 
-        private string _baseError(Exception ex)
+        private static string _baseErr(Exception exc)
         {
-            return $"Message: {ex.Message}, Inner exception: {ex.InnerException?.Message}";
+            return $"Message: {exc.Message}, Inner exception: {exc.InnerException?.Message}";
         }
     }
 }

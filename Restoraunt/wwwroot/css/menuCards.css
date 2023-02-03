@@ -1,0 +1,41 @@
+﻿.img-pos {
+    padding: 0;
+    margin: 0;
+    background-size: contain;
+    height: 100%;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    background-color: transparent;
+    padding: 2em;
+    margin: 0 20px;
+}
+
+    .card * {
+        margin: 8px 0 0 0;
+        color: #ffffff;
+    }
+
+    .card h1 {
+        letter-spacing: 0.05em;
+        line-height: 40px;
+        font-size: 34px;
+    }
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.position-price {
+    font-size: 1.5rem;
+}
+
+.position-description {
+    font-size: 1rem;
+}

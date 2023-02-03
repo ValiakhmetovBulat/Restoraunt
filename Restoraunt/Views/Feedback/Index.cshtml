@@ -1,0 +1,67 @@
+﻿@model RestorauntApi.Models.Entities.Review
+@{
+    ViewData["Title"] = "Oasis";
+}
+
+<script src="~/js/dataFunctions.js"></script>
+
+<body>
+    <div class="info-container">
+        <h2 class="page-title">Прямая связь с руководством</h2>
+        <div class="black-splitter"></div>
+
+        <form class="feedback-form" asp-antiforgery="true" asp-action="Create" asp-controller="Feedback">
+            <div class="form-group col-md-5">
+                <p>
+                    Дорогие гости, если Вам понравилось или не понравилось обслуживание в ресторане, вы можете связаться напрямую с руководством через эту форму.
+                    Все отзывы будут обязательно рассмотрены. <br> <br>
+
+                    Не забывайте указывать варианты связи с Вами. Спасибо !
+                </p>
+            </div>
+            <input type="hidden" name="id" value="0" />
+            <div class="form-group col-md-5">
+                <input class="form-control" type="text" asp-for="Name" placeholder="Имя *" />
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group col-md-5">
+                <input class="form-control" type="text" asp-for="Surname" placeholder="Фамилия *" />
+                <span asp-validation-for="Surname"></span>
+            </div>
+            <div class="form-group col-md-5">
+                <input class="form-control" type="text" asp-for="Email" placeholder="E-mail *" />
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group col-md-5">
+                <input class="form-control" type="text" asp-for="Phone" placeholder="Телефон *" />
+                <span asp-validation-for="Phone"></span>
+            </div>
+            <div class="form-group col-md-5">
+                <input id="dateOfVisit" class="form-control" type="date" asp-for="DateOfVisit" placeholder="Дата мероприятия (посещения)" />
+                <script>setMaxDate()</script>
+                <span asp-validation-for="DateOfVisit"></span>
+            </div>
+            <div class="form-group col-md-5">
+                <input class="form-control" type="text" asp-for="NumberOfGuests" placeholder="Количество гостей" />
+                <span asp-validation-for="NumberOfGuests"></span>
+            </div>
+            <div class="form-group col-md-5">
+                <input class="form-control" type="text" asp-for="TableNumber" placeholder="Номер стола" />
+                <span asp-validation-for="TableNumber"></span>
+            </div>
+            <div class="form-group col-md-5">
+                <textarea class="form-control tb-comment" type="text" asp-for="Message" placeholder="Комментарий"></textarea>
+                <span asp-validation-for="Message"></span>
+            </div>
+            <div class="form-group col-md-5 btn-container">
+                <button type="submit" id="submit" class="btn btn-custom">Отправить</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+@section scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+        }

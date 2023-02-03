@@ -1,15 +1,17 @@
 ﻿function setLinksOutline() {
     var current = 0;
     var navbarElems = document.getElementsByClassName("navbar-link");
+    var urlLastEndpoint = document.URL.split('/');
+    urlLastEndpoint = urlLastEndpoint[urlLastEndpoint.length - 1].toLowerCase()
 
     for (var i = 0; i < navbarElems.length; i++) {
-        if (navbarElems[i].href.toLowerCase() === document.URL.toLowerCase()) {
+        var splitted = navbarElems[i].href.toLowerCase().split('/');
+        if (splitted[splitted.length - 1].toLowerCase() === urlLastEndpoint) {
             current = i;
         }
     }
 
     navbarElems[current].className = 'active-page';
-
 
     var current = 0;
     var sections = document.getElementsByClassName("menu-section");

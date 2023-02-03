@@ -26,12 +26,13 @@ builder.Services.AddSwaggerGen(options =>
 #region Repositories
 builder.Services.AddTransient<IMenuPositionsRepository, MenuPositionsRepository>();
 builder.Services.AddTransient<ISectionsRepository, SectionsRepository>();
+builder.Services.AddTransient<IReviewRepository, ReviewRepository>();
+builder.Services.AddTransient<IPositionTypesRepository, PositionTypesRepository>();
 #endregion
 
 builder.Services.AddDbContext<RestorauntDbContext>(
     o => o.UseNpgsql(builder.Configuration.GetConnectionString("RestorauntDb"))
     );
-
 
 var app = builder.Build();
 

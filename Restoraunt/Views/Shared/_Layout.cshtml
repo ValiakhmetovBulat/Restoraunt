@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/menu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/feedback.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/menuCards.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Restoraunt.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/navbar.css"/>
 </head>
@@ -15,24 +17,21 @@
         <div class="hr">
             <a class="main-logo" asp-controller="Home" asp-action="Index"></a>
             <ul class="hr">
-                <li><a asp-controller="Home" asp-action="Index" class="navbar-link">О нас</a></li>
-                <li><a asp-controller="Menu" asp-action="Index" class="navbar-link">Меню</a></li>
-                <li><a class="navbar-link">Отзывы</a></li>
-                <li><a class="navbar-link">Обратная связь</a></li>
+                <li><a asp-controller="Home" asp-action="Index"  class="navbar-link">О нас</a></li>
+                <li><a asp-controller="Menu" asp-action="Index" asp-route-section="main" asp-route-type="salads" class="navbar-link">Меню</a></li>
+                <li><a asp-controller="Review" asp-action="Index" class="navbar-link">Отзывы</a></li>
+                <li><a asp-controller="Feedback" asp-action="Index" class=" navbar-link">Обратная связь</a></li>
             </ul>
         </div>
     </header>
     <div >
-        <main role="main" class="pb-3">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - @ViewData["Title"] @*<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
-        </div>
-    </footer>
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
