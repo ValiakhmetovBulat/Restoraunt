@@ -11,7 +11,6 @@ namespace Restoraunt.Controllers
 {
     public class MenuController : Controller
     {
-        private static MenuModel _menuModel;
         public MenuController()
         {          
         }
@@ -20,16 +19,23 @@ namespace Restoraunt.Controllers
         [Route("/menu/{section}/{type}")]
         public async Task<ActionResult> Index(string section, string type)
         {
+            List<MenuPosition> positions = new List<MenuPosition>();
             if (string.IsNullOrEmpty(section) && string.IsNullOrEmpty(type))
             {
                 section = "main";
-                type = "salads";
+                type = "salads";                
             }
-            _menuModel.menuPositions = await BaseHttpService<MenuPosition>.SendAsync<MenuPosition>("menu/" + section + "/" + type, HttpMethod.Get);
-            _menuModel.sections = await BaseHttpService<Section>.SendAsync<Section>("section", HttpMethod.Get);
-            _menuModel.positionTypes = await BaseHttpService<PositionType>.SendAsync<PositionType>("positiontype", HttpMethod.Get);
 
-            return View(_menuModel);
-        }        
+            positions = await BaseHttpService<MenuPosition>.SendAsync<MenuPosition>("menu/" + section, HttpMethod.Get);
+            var sections = await BaseHttpService<Section>.SendAsync<Section>("section", HttpMethod.Get);
+            var positionTypes = await BaseHttpService<PositionType>.SendAsync<PositionType>("PositionType", HttpMethod.Get);
+
+            MenuModel mm = new MenuModel(positions, sections, positionTypes);
+
+            positions = await BaseHttpService<MenuPosition>.SendAsync<MenuPosition>("menu/" + section + "/" + type, HttpMethod.Get);
+            mm.menuPositions = positions;
+
+            return View(mm);
+        }
     }
 }

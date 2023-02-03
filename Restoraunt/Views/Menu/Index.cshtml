@@ -18,23 +18,30 @@
         
         <div class="menu">
             <ul class="menu-section-container">
-                @foreach (var item in Model.typesToSections) {
-                        <li><a asp-controller="Menu" asp-action="Index" asp-route-section="@item.Value" asp-route-type="@item.Value" class="menu-section">@item.Key</a></li>
-                }
+                <li><a asp-controller="Menu" asp-action="Index" asp-route-section="main" asp-route-type="salads" class="menu-section">ОСНОВНОЕ</a></li>
+                <li><a asp-controller="Menu" asp-action="Index" asp-route-section="for-company" class="menu-section">ДЛЯ КОМПАНИЙ</a></li>
+                <li><a asp-controller="Menu" asp-action="Index" asp-route-section="buisness" class="menu-section">БИЗНЕС-ЛАНЧИ</a></li>
+                <li><a asp-controller="Menu" asp-action="Index" asp-route-section="bar" asp-route-type="coctails" class="menu-section">БАР</a></li>
             </ul>
             <div class="menu-field">
-
-                
+                <ul class="menu-type-container">
+                    @foreach (var item in Model.typesToSections)
+                    {
+                        <li><a asp-controller="Menu" asp-action="Index" asp-route-section="@item.Value" asp-route-type="@item.Key" class="menu-type">@item.Key</a></li>
+                    }
+                </ul>
+                <div class="card-container">
                 @foreach (var item in Model.menuPositions) {
-                    <div class="card-container">
+                    
                         <div class="card">
                             <img src=data:image/jpg;base64,@item.Photo class="img-pos">
                             <h1>@item.Name</h1>
                             <span class="position-description">@item.Decription</span>
                             <div class="position-price">@item.Price руб.</div>
                         </div>
-                    </div>
-                }                
+                    
+                }   
+                </div>
             </div>
         </div>
     </div>

@@ -48,3 +48,25 @@ ul.menu-section-container li {
 .active-section:hover {
     color: #ffffff;
 }
+
+.menu-type {
+    display: table-cell;
+    height: 2em;
+    padding: 0 5em;
+    vertical-align: middle;
+    border-radius: 15px;
+    font-size: 18px;
+    background-color: #D9D9D9;
+}
+
+.menu-type-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 70px;
+    margin: 0;
+}
+
+    .menu-type-container li {
+        margin: 20px 20px 0 20px;
+    }
