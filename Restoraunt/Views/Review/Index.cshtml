@@ -1,0 +1,27 @@
+﻿@model List<RestorauntApi.Models.Entities.Review>
+@{
+    ViewData["Title"] = "Oasis";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Отзывы - @ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="info-container">
+        <h2 class="page-title">Отзывы</h2>
+        <div class="black-splitter"></div>
+        <div class="review-field">
+            @foreach (var item in Model)
+            {
+                <div class="review-container">
+                    <label class="review-name">@item.Name @item.Surname</label>
+                    <p class="review-text">@item.Message</p>
+                    <label class="review-date">@item.DateOfVisit</label>
+                </div>
+            }
+        </div>
+    </div>
+</body>

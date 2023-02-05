@@ -20,7 +20,7 @@ namespace RestorauntApi.Models.Entities
         [Required]
         public int Price { get; set; }
         public string? Decription { get; set; }
-        public byte[]? Photo { get; set; }
+        public string? Photo { get; set; }
         public int SectionId { get; set; }
         public virtual Section? Section { get; set; }
         public int PositionTypeId { get; set; }

@@ -17,6 +17,13 @@ namespace RestorauntApi.Controllers
         }
 
         /// <summary>
+        /// Gets all the reviews
+        /// </summary>
+        /// <returns></returns>        
+        [HttpGet]
+        public async Task<IEnumerable<Review>> Get() => await _db.GetAll();
+
+        /// <summary>
         /// Creates new review
         /// </summary>
         /// <param name="review"></param>

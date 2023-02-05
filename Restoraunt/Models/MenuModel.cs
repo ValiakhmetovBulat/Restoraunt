@@ -6,7 +6,7 @@ namespace Restoraunt.Models
     {
         public List<MenuPosition> menuPositions { get; set; }
         private List<Section> sections { get; set; }
-        private List<PositionType> positionTypes { get; set; }
+        public List<PositionType> positionTypes { get; set; }
         public Dictionary<string, string> typesToSections { get; set; }
         private Dictionary<int, string> typesToPositions { get; set; }
         private Dictionary<int, string> sectionsToPositions { get; set; }

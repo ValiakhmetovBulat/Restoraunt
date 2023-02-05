@@ -20,15 +20,10 @@ namespace Restoraunt.Controllers
         public async Task<ActionResult> Index(string section, string type)
         {
             List<MenuPosition> positions = new List<MenuPosition>();
-            if (string.IsNullOrEmpty(section) && string.IsNullOrEmpty(type))
-            {
-                section = "main";
-                type = "salads";                
-            }
 
             positions = await BaseHttpService<MenuPosition>.SendAsync<MenuPosition>("menu/" + section, HttpMethod.Get);
             var sections = await BaseHttpService<Section>.SendAsync<Section>("section", HttpMethod.Get);
-            var positionTypes = await BaseHttpService<PositionType>.SendAsync<PositionType>("PositionType", HttpMethod.Get);
+            var positionTypes = await BaseHttpService<PositionType>.SendAsync<PositionType>("PositionTypes/", HttpMethod.Get);
 
             MenuModel mm = new MenuModel(positions, sections, positionTypes);
 

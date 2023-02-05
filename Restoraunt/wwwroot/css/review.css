@@ -1,0 +1,30 @@
+﻿.review-container {
+    border: 1px solid;
+    width: 570px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 40px;
+}
+
+.review-text {
+    margin: 0;
+    background-color: #4ABBA4; 
+    padding: 20px;
+}
+
+.review-name {
+    font-size: 24px;
+    margin: 10px;
+}
+
+.review-date {
+    margin: 10px;
+}
+
+.review-field {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
