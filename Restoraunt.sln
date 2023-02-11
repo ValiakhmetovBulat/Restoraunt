@@ -4,14 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restoraunt", "Restoraunt\Restoraunt.csproj", "{5FB69BE7-4874-465C-8EC2-160A3EC38FF0}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A8E90D83-483E-4681-9FB5-023D1E468280} = {A8E90D83-483E-4681-9FB5-023D1E468280}
-		{BFA49751-D412-40F7-B808-8016A73DF015} = {BFA49751-D412-40F7-B808-8016A73DF015}
-	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestorauntApi", "RestorauntApi\RestorauntApi.csproj", "{BFA49751-D412-40F7-B808-8016A73DF015}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{A8E90D83-483E-4681-9FB5-023D1E468280}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,14 +15,6 @@ Global
 		{5FB69BE7-4874-465C-8EC2-160A3EC38FF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FB69BE7-4874-465C-8EC2-160A3EC38FF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FB69BE7-4874-465C-8EC2-160A3EC38FF0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFA49751-D412-40F7-B808-8016A73DF015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFA49751-D412-40F7-B808-8016A73DF015}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFA49751-D412-40F7-B808-8016A73DF015}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFA49751-D412-40F7-B808-8016A73DF015}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A8E90D83-483E-4681-9FB5-023D1E468280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A8E90D83-483E-4681-9FB5-023D1E468280}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A8E90D83-483E-4681-9FB5-023D1E468280}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A8E90D83-483E-4681-9FB5-023D1E468280}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

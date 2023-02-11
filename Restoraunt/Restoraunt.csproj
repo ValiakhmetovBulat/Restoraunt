@@ -24,8 +24,4 @@
     <Folder Include="Data\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\RestorauntApi\RestorauntApi.csproj" />
-  </ItemGroup>
-
 </Project>

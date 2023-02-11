@@ -2,7 +2,6 @@
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Text;
-using RestorauntApi.Models.Entities;
 
 namespace Restoraunt.Models.Bases
 {

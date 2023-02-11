@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Restoraunt.Models;
 using Restoraunt.Models.Bases;
-using RestorauntApi.Models.Entities;
+using Restoraunt.Models.Entities;
 using System.Net;
 using System.Runtime.CompilerServices;
 

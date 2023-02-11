@@ -1,4 +1,4 @@
-﻿using RestorauntApi.Models.Entities;
+﻿using Restoraunt.Models.Entities;
 
 namespace Restoraunt.Models
 {

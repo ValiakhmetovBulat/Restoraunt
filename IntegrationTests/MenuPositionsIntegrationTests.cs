@@ -5,19 +5,18 @@ namespace IntegrationTests
     public class MenuPositionsIntegrationTests : IClassFixture<TestingWebAppFactory<Program>>
     {
         private readonly HttpClient _user;
-
         public MenuPositionsIntegrationTests(TestingWebAppFactory<Program> factory)
         {
             _user = factory.CreateClient();
         }
 
         [Fact]
-        public async Task GetPositionsTest ()
+        public async Task Create_When_Called_ReturnsCreateFrom()
         {
-            var responce = await _user.GetAsync("/api/menu");
+            var responce = await _user.GetAsync("/Home/Index");
             responce.EnsureSuccessStatusCode();
-            var responseStr = await responce.Content.ReadAsStringAsync();
-            Assert.Contains("id", responseStr);
+            var responseString = await responce.Content.ReadAsStringAsync();
+            Assert.Contains("Lorem ipsum dolor", responseString);
         }
     }
 }
